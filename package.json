@@ -1,0 +1,73 @@
+{
+  "name": "@samyca/mailflow",
+  "version": "1.0.0",
+  "author": "Samyca <contact@samyca.com>",
+  "description": "A comprehensive tool for handling email flows in Node.js applications.",
+  "homepage": "https://github.com/Samyca/mailflow#readme",
+  "keywords": ["email", "mail", "smtp", "imap", "mail parsing", "nodemailer", "mailflow"],
+  "license": "MIT",
+  "module": "dist/mailflow.esm.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build --format cjs,esm,umd",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "husky",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "format": "npx prettier . --write"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "imapflow": "^1.0.152",
+    "mailparser": "^3.6.7",
+    "nodemailer": "^6.9.10"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.0.2",
+    "@types/cheerio": "^0.22.35",
+    "@types/imapflow": "^1.0.18",
+    "@types/mailparser": "^3.4.4",
+    "@types/nodemailer": "^6.4.14",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "3.2.5",
+    "size-limit": "^11.0.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "size-limit": [
+    {
+      "path": "dist/mailflow.cjs.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/mailflow.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samyca/mailflow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Samyca/mailflow/issues"
+  }
+}
