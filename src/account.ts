@@ -101,12 +101,11 @@ export class Account {
     this.username = params.username;
     this.password = params.password;
   }
-
   /**
    * Creates a nodemailer Transporter for SMTP operations.
    * @param params SMTP server parameters.
    */
-  private _createTransport = (params: ServerParams) => {
+  private _createTransport(params: ServerParams) {
     this.transporter = nodemailer.createTransport({
       host: params.host,
       port: params.port,
@@ -116,13 +115,13 @@ export class Account {
         pass: params.password,
       },
     });
-  };
+  }
 
   /**
    * Initializes the IMAP client for email retrieval.
    * @param params IMAP server parameters.
    */
-  private _createClient = (params: ServerParams) => {
+  private _createClient(params: ServerParams) {
     this.client = new ImapFlow({
       host: params.host,
       port: params.port,
@@ -134,23 +133,23 @@ export class Account {
         pass: params.password,
       },
     });
-  };
+  }
 
   /**
    * Parses the email from a raw source buffer.
    * @param source Raw source of the email.
    * @returns A Mail object parsed from the source.
    */
-  private _parse = async (source: Buffer): Promise<Mail> => {
+  private async _parse(source: Buffer): Promise<Mail> {
     const parsedMail = await simpleParser(source);
     return new Mail(parsedMail);
-  };
+  }
 
   /**
    * Retrieves all emails from the inbox.
    * @returns An array of FetchMessageObject representing each email.
    */
-  private _getAllMails = async (): Promise<FetchMessageObject[]> => {
+  private async _getAllMails(): Promise<FetchMessageObject[]> {
     try {
       if (this.client instanceof ImapFlow) {
         const client = this.client;
@@ -177,14 +176,14 @@ export class Account {
     } catch (error) {
       throw error;
     }
-  };
+  }
 
   /**
    * Retrieves all emails that match the specified filter.
    * @param filter Criteria to filter emails.
    * @returns An array of Mail objects that match the filter criteria.
    */
-  public getAllMails = async (filter: FilterParams): Promise<Mail[]> => {
+  public async getAllMails(filter: FilterParams): Promise<Mail[]> {
     try {
       const fetchMessage = await this._getAllMails();
 
@@ -199,21 +198,21 @@ export class Account {
     } catch (error) {
       throw error;
     }
-  };
+  }
 
   /**
    * Retrieves the most recent email that matches the specified filter.
    * @param filter Criteria to filter emails.
    * @returns The most recent Mail object that matches the filter criteria.
    */
-  public getLastMail = async (filter: FilterParams): Promise<Mail> => {
+  public async getLastMail(filter: FilterParams): Promise<Mail> {
     try {
       const mails = await this.getAllMails(filter);
       return mails[0];
     } catch (error) {
       throw error;
     }
-  };
+  }
 
   /**
    * Filters emails based on the specified criteria.
@@ -221,7 +220,7 @@ export class Account {
    * @param mails Array of Mail objects to filter.
    * @returns An array of Mail objects that match the filter criteria.
    */
-  private _leaked = (filter: FilterParams, mails: Mail[]): Mail[] => {
+  private _leaked(filter: FilterParams, mails: Mail[]): Mail[] {
     return mails.filter((mail: Mail) => {
       if (filter.from && mail.from?.text !== filter.from) {
         return false;
@@ -249,7 +248,7 @@ export class Account {
 
       return true;
     });
-  };
+  }
 
   /**
    * Sends an email using the configured SMTP transporter.

@@ -24,7 +24,9 @@ yarn add @samyca/mailflow
 ```
 
 ## Usage
+
 ### Creating an Account
+
 ```js
 import { createAccount, createRandomAccount } from '@samyca/mailflow';
 
@@ -48,9 +50,13 @@ async function setupAccount() {
 
   console.log(account);
 }
+
+setupOtherAccount().then();
+setupAccount().then();
 ```
 
 ### Fetching and Parsing Emails
+
 ```js
 import { createAccount } from '@samyca/mailflow';
 
@@ -64,8 +70,9 @@ async function getDataByCssQuery() {
   });
 
   const lastEmail = await account.getLastMail({});
-  const data = await lastEmail.getData('div.code');
-  
+  const data = lastEmail.getData('div.code');
+
   console.log(data);
 }
+getDataByCssQuery().then();
 ```

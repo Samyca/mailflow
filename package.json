@@ -1,10 +1,18 @@
 {
   "name": "@samyca/mailflow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Samyca <contact@samyca.com>",
   "description": "A comprehensive tool for handling email flows in Node.js applications.",
   "homepage": "https://github.com/Samyca/mailflow#readme",
-  "keywords": ["email", "mail", "smtp", "imap", "mail parsing", "nodemailer", "mailflow"],
+  "keywords": [
+    "email",
+    "mail",
+    "smtp",
+    "imap",
+    "mail parsing",
+    "nodemailer",
+    "mailflow"
+  ],
   "license": "MIT",
   "module": "dist/mailflow.esm.js",
   "main": "dist/index.js",
@@ -14,7 +22,7 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --format cjs,esm,umd",
+    "build": "tsdx build --format cjs,esm",
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "husky",
