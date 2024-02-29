@@ -3,17 +3,17 @@
  */
 type AccountParams = {
   /** The SMTP server host address. */
-  smtpHost: string;
+  smtpHost?: string;
   /** The port number for the SMTP server. */
-  smtpPort: number;
+  smtpPort?: number;
   /** Specifies if the SMTP connection should use TLS. */
-  smtpSecure: boolean;
+  smtpSecure?: boolean;
   /** The IMAP server host address. */
-  imapHost: string;
+  imapHost?: string;
   /** The port number for the IMAP server. */
-  imapPort: number;
+  imapPort?: number;
   /** Specifies if the IMAP connection should use TLS. */
-  imapSecure: boolean;
+  imapSecure?: boolean;
   /** The username for authenticating with both SMTP and IMAP servers. */
   username: string;
   /** The password for authenticating with both SMTP and IMAP servers. */
@@ -29,7 +29,7 @@ type ServerParams = {
   /** The port number for the server. */
   port: number;
   /** Specifies if the connection should use TLS (true for secure, false otherwise). */
-  secure: boolean;
+  secure: boolean | undefined;
   /** The username for server authentication. */
   username: string;
   /** The password for server authentication. */

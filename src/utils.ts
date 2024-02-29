@@ -117,9 +117,14 @@ export async function lastMailAndData(
   filters: FilterParams,
   cssQuery: string
 ): Promise<{ mail: Mail; data: string }> {
-  const mail = await lastMail(params, filters);
-  const data = mail.getData(cssQuery); // Ensure this is awaited if getData is an async operation
-  return { mail, data };
+  try {
+    const mail = await lastMail(params, filters);
+    if (!mail) throw new Error('No email found');
+    const data = mail.getData(cssQuery); // Ensure this is awaited if getData is an async operation
+    return { mail, data };
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
