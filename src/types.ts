@@ -29,7 +29,7 @@ type ServerParams = {
   /** The port number for the server. */
   port: number;
   /** Specifies if the connection should use TLS (true for secure, false otherwise). */
-  secure: boolean | undefined;
+  secure: boolean;
   /** The username for server authentication. */
   username: string;
   /** The password for server authentication. */

@@ -32,7 +32,7 @@ export class Account {
   /**
    * Indicates if the SMTP connection should use TLS.
    */
-  public smtpSecure: boolean | undefined = true;
+  public smtpSecure: boolean;
 
   /**
    * IMAP server host address.
@@ -47,7 +47,7 @@ export class Account {
   /**
    * Indicates if the IMAP connection should use TLS.
    */
-  public imapSecure: boolean | undefined = true;
+  public imapSecure: boolean;
 
   /**
    * Username for authentication with both SMTP and IMAP servers.
@@ -100,15 +100,6 @@ export class Account {
         password: this.password,
       });
     }
-
-    this.smtpHost = params.smtpHost;
-    this.smtpPort = params.smtpPort;
-    this.smtpSecure = params.smtpSecure;
-    this.imapHost = params.imapHost;
-    this.imapPort = params.imapPort;
-    this.imapSecure = params.imapSecure;
-    this.username = params.username;
-    this.password = params.password;
   }
   /**
    * Creates a nodemailer Transporter for SMTP operations.
