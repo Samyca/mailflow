@@ -32,7 +32,7 @@ export class Account {
   /**
    * Indicates if the SMTP connection should use TLS.
    */
-  public smtpSecure: boolean = true;
+  public smtpSecure: boolean;
 
   /**
    * IMAP server host address.
@@ -47,7 +47,7 @@ export class Account {
   /**
    * Indicates if the IMAP connection should use TLS.
    */
-  public imapSecure: boolean = true;
+  public imapSecure: boolean;
 
   /**
    * Username for authentication with both SMTP and IMAP servers.
@@ -72,34 +72,34 @@ export class Account {
    * @param params.password The password for authenticating with both SMTP and IMAP servers.
    */
   constructor(params: AccountParams) {
+    this.smtpHost = params.smtpHost ?? '';
+    this.smtpPort = params.smtpPort ?? 0;
+    this.smtpSecure = params.smtpSecure ?? false;
+    this.imapHost = params.imapHost ?? '';
+    this.imapPort = params.imapPort ?? 0;
+    this.imapSecure = params.imapSecure ?? false;
+    this.username = params.username;
+    this.password = params.password;
+
     if (params.smtpHost !== '' && params.smtpPort) {
       this._createTransport({
-        host: params.smtpHost,
-        port: params.smtpPort,
-        secure: params.smtpSecure,
-        username: params.username,
-        password: params.password,
+        host: this.smtpHost,
+        port: this.smtpPort,
+        secure: this.smtpSecure,
+        username: this.username,
+        password: this.password,
       });
     }
 
     if (params.imapHost !== '' && params.imapPort) {
       this._createClient({
-        host: params.imapHost,
-        port: params.imapPort,
-        secure: params.imapSecure,
-        username: params.username,
-        password: params.password,
+        host: this.imapHost,
+        port: this.imapPort,
+        secure: this.imapSecure,
+        username: this.username,
+        password: this.password,
       });
     }
-
-    this.smtpHost = params.smtpHost;
-    this.smtpPort = params.smtpPort;
-    this.smtpSecure = params.smtpSecure;
-    this.imapHost = params.imapHost;
-    this.imapPort = params.imapPort;
-    this.imapSecure = params.imapSecure;
-    this.username = params.username;
-    this.password = params.password;
   }
   /**
    * Creates a nodemailer Transporter for SMTP operations.
@@ -132,6 +132,7 @@ export class Account {
         user: params.username,
         pass: params.password,
       },
+      logger: false,
     });
   }
 
@@ -183,7 +184,7 @@ export class Account {
    * @param filter Criteria to filter emails.
    * @returns An array of Mail objects that match the filter criteria.
    */
-  public async getAllMails(filter: FilterParams): Promise<Mail[]> {
+  public async getAllMails(filter: FilterParams = {}): Promise<Mail[]> {
     try {
       const fetchMessage = await this._getAllMails();
 
