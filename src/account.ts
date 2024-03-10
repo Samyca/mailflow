@@ -72,34 +72,30 @@ export class Account {
    * @param params.password The password for authenticating with both SMTP and IMAP servers.
    */
   constructor(params: AccountParams) {
-    this.smtpHost = params.smtpHost ?? '';
-    this.smtpPort = params.smtpPort ?? 0;
-    this.smtpSecure = params.smtpSecure ?? false;
-    this.imapHost = params.imapHost ?? '';
-    this.imapPort = params.imapPort ?? 0;
-    this.imapSecure = params.imapSecure ?? false;
+    this.smtpHost = params.smtpHost ?? 'smtp.ethereal.email';
+    this.smtpPort = params.smtpPort ?? 587;
+    this.smtpSecure = params.smtpSecure ?? true;
+    this.imapHost = params.imapHost ?? 'imap.ethereal.email';
+    this.imapPort = params.imapPort ?? 993;
+    this.imapSecure = params.imapSecure ?? true;
     this.username = params.username;
     this.password = params.password;
 
-    if (params.smtpHost !== '' && params.smtpPort) {
-      this._createTransport({
-        host: this.smtpHost,
-        port: this.smtpPort,
-        secure: this.smtpSecure,
-        username: this.username,
-        password: this.password,
-      });
-    }
+    this._createTransport({
+      host: this.smtpHost,
+      port: this.smtpPort,
+      secure: this.smtpSecure,
+      username: this.username,
+      password: this.password,
+    });
 
-    if (params.imapHost !== '' && params.imapPort) {
-      this._createClient({
-        host: this.imapHost,
-        port: this.imapPort,
-        secure: this.imapSecure,
-        username: this.username,
-        password: this.password,
-      });
-    }
+    this._createClient({
+      host: this.imapHost,
+      port: this.imapPort,
+      secure: this.imapSecure,
+      username: this.username,
+      password: this.password,
+    });
   }
   /**
    * Creates a nodemailer Transporter for SMTP operations.

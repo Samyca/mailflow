@@ -15,6 +15,16 @@ describe('Account', () => {
     expect(password).toBeDefined();
   });
 
+  it('create account with default service', async () => {
+    const accountParams = {
+      username: testUser,
+      password: testPass,
+    };
+    const { username, password } = await createAccount(accountParams);
+    expect(username).toMatch(regexEmail);
+    expect(password).toBeDefined();
+  });
+
   it('create random account with ethereal service', async () => {
     const { username, password } = await createRandomAccount();
     expect(username).toMatch(regexEmail);
