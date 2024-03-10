@@ -17,9 +17,6 @@ describe('Mail', () => {
 
   it('last email and data by css query', async () => {
     const accountParams = {
-      imapHost: 'imap.ethereal.email',
-      imapPort: 993,
-      imapSecure: true,
       username: testUser,
       password: testPass,
     };
@@ -30,9 +27,6 @@ describe('Mail', () => {
 
   it('all emails by user', async () => {
     const account = await createAccount({
-      imapHost: 'imap.ethereal.email',
-      imapPort: 993,
-      imapSecure: true,
       username: testUser,
       password: testPass,
     });
