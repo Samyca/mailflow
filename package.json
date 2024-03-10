@@ -1,6 +1,6 @@
 {
   "name": "@samyca/mailflow",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Samyca <contact@samyca.com>",
   "description": "A comprehensive tool for handling email flows in Node.js applications.",
   "homepage": "https://github.com/Samyca/mailflow#readme",
