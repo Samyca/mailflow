@@ -63,9 +63,9 @@ export async function lastMail(params: AccountParams, filters: FilterParams): Pr
     imapSecure: params.imapSecure,
     username: params.username,
     password: params.password,
-    smtpHost: '',
-    smtpPort: 0,
-    smtpSecure: false,
+    smtpHost: params.smtpHost,
+    smtpPort: params.smtpPort,
+    smtpSecure: params.smtpSecure,
   });
 
   return await account.getLastMail(filters);

@@ -1,6 +1,6 @@
 {
   "name": "@samyca/mailflow",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Samyca <contact@samyca.com>",
   "description": "A comprehensive tool for handling email flows in Node.js applications.",
   "homepage": "https://github.com/Samyca/mailflow#readme",
@@ -29,13 +29,14 @@
     "prepare": "husky",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "format": "npx prettier . --write"
+    "format": "npx prettier . --write",
+    "publish": "npm ci && npm run format && npm run build && npm run test && npm publish --access public"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "imapflow": "^1.0.152",
-    "mailparser": "^3.6.7",
-    "nodemailer": "^6.9.10"
+    "imapflow": "1.0.152",
+    "mailparser": "3.6.7",
+    "nodemailer": "6.9.10"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.0.2",
@@ -51,7 +52,7 @@
     "size-limit": "^11.0.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
+    "typescript": "5.3.3"
   },
   "engines": {
     "node": ">=18"
