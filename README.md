@@ -2,6 +2,11 @@
 
 A comprehensive tool for handling email flows in Node.js applications, providing functionalities for sending, receiving, and parsing emails with ease.
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/samyca/mailflow/node.js.yml)
+![GitHub top language](https://img.shields.io/github/languages/top/samyca/mailflow)
+![NPM Downloads](https://img.shields.io/npm/dw/%40samyca%2Fmailflow)
+![GitHub License](https://img.shields.io/github/license/samyca/mailflow)
+
 ## Features
 
 - Send emails using SMTP protocol.
